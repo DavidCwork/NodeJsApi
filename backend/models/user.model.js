@@ -22,7 +22,7 @@ const userSchema = new conexion.Schema({
         default: true
     }
 }, {
-    versionKey: false // You should be aware of the outcome after set to false
+    versionKey: false 
 });
 
 const userModel = conexion.model('usuarios', userSchema);
