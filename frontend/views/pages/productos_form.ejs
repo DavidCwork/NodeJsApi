@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <style>
+            
+        </style>
+
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="">
+        <h1> Registrar Productos</h1>
+        <form action="/productos_crear" method="post">
+            <div class="mb-2">
+                <label for="referencia" class="form-label">Referencia</label>
+                <input type="number" class="form-control" placeholder="Ingrese la referencia" name="referencia">
+            </div>
+            <div class="mb-2">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" placeholder="Ingrese el nombre" name="nombre">
+            </div>
+            <div class="mb-2">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" placeholder="Ingrese la descripcion" name="descripcion">
+            </div>
+            <div class="mb-2">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" placeholder="Ingrese el precio" name="precio">
+            </div>
+            <div class="mb-2">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" class="form-control" placeholder="Ingrese el inventario" name="stock">
+            </div>
+            <div class="mb-2">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="text" class="form-control" placeholder="suba las imagenes" name="imagen">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

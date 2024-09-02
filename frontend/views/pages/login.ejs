@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <style>
+            .login {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 50px;
+            }
+        </style>
+
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="login">
+        <form action="/login-datos" method="post">
+            <div class="mb-2">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="text" class="form-control" id="correo" placeholder="Ingrese su correo" name="correo">
+            </div>
+            <div class="mb-2">
+                <label for="passw" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="passw" placeholder="Ingrese su contraseña" name="contrasena">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

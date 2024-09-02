@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        main {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <table id="productos" class="table table-striped">
+            <thead>
+                <th>Referencia</th>
+                <th>Productos</th>
+                <th>Precio</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Imagenes</th>
+                <th>acciones</th>
+            </thead>
+            <tbody>
+                <% productos.forEach(producto=> { %>
+                    <tr>
+                        <td>
+                            <%= producto.referencia %>
+                        </td>
+                        <td>
+                            <%= producto.nombre %>
+                        </td>
+                        <td>
+                            <%= producto.precio %>
+                        </td>
+                        <td>
+                            <%= producto.descripcion %>
+                        </td>
+                        <td>
+                            <%= producto.categoria %>
+                        </td>
+                        <td>
+                            <%= producto.imagenes %>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning"> Editar </button>
+                            <button class="btn btn-danger"> Eliminar </button>    
+                        </td>
+                    </tr>
+
+                    <%})%>
+            </tbody>
+        </table>
+
+    </main>
+
+
+    <footer>
+        <%- include('../partials/footer'); %>
+        <script> new DataTable('#productos')</script>
+    </footer>
+
+</body>
+
+</html>
+
+<script>
+
+
+</script>

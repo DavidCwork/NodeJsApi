@@ -1,21 +1,51 @@
 const exp = require('express');
+const router = require('./backend/router/router')
 const modeloUsuario = require('./backend/models/user.model')
 const modeloProducto = require('./backend/models/producto.model')
 const modeloCliente = require('./backend/models/cliente.model')
 const modeloPedido = require('./backend/models/pedido.model')
 require('dotenv').config();
 
-/* variable para enviar correo */
+// variable para enviar correo 
 const emailService = require ('./backend/utils/email.service')
 
 const app = exp();
-
 const logger = require('morgan');
 const { sendEmail } = require('./backend/utils/email.service');
 app.use(logger('dev'));
 
+app.use('/v1', router),
 app.use(exp.urlencoded({extended: false}));
 app.use(exp.json())
+
+
+const path = require('path')
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname,'/frontend/views'));
+
+// interfaces
+
+app.get('/inicio',async(req,res)=>{
+    const consulta = await modeloUsuario.find({});
+    res.render('pages/index', {
+        usuarios: consulta,
+     
+    })
+})
+
+app.get('/login',async(req,res)=>{
+    const consulta = await modeloUsuario.find({});
+    res.render('pages/login', {
+        
+    })
+})
+
+
+
+app.post('/login-datos',async(req,res)=>{
+    console.log(req.body)
+    res.render('pages/login')
+})
 
 
 app.get('/usuario', async (req,res)=>{
@@ -87,7 +117,7 @@ app.get('/enviarcorreo', async (req,res)=>{
 })
 /* Productos */
 
-app.get('/productos', async (req,res) => {
+app.get('/productosListar', async (req,res) => {
     const consulta = await modeloProducto.find({});
     if (consulta)
         res.status(200).json(consulta) 

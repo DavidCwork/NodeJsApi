@@ -12,6 +12,7 @@ const ProductoSchema = new conexion.Schema({
         descripcion: {
             type: String,
             required: [true, 'La descripción es obligatoria']
+            
         },
         precio: {
             type: Number,
@@ -20,7 +21,7 @@ const ProductoSchema = new conexion.Schema({
         
         stock: {
             type: Number,
-            default: [0, 'El stock por defecto es cero'], min: [0, 'El stock por defecto es cero']
+            default: [0, 'El stock por defecto es cero'], min: [0, 'El precio mínimo es cero']
         },
         imagen: {
             type: String,
