@@ -33,3 +33,14 @@ exports.productosCrear = async(req,res) => {
         res.render('pages/productos')
     }
 }
+
+exports.consultarCatalogo = async(req,res)=>{
+    const consultaProd = await modeloProducto.find({ });
+    if(consultaProd){
+        res.render('pages/catalogo', {
+            productos: consultaProd,
+        })
+    }else{ 
+        res.render('pages/productos', {"mensaje":"no hay datos disponibles"})
+    }
+}

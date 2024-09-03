@@ -14,7 +14,9 @@ const logger = require('morgan');
 const { sendEmail } = require('./backend/utils/email.service');
 app.use(logger('dev'));
 
-app.use('/v1', router),
+// configuración router
+app.use('/', router),
+
 app.use(exp.urlencoded({extended: false}));
 app.use(exp.json())
 
@@ -22,24 +24,6 @@ app.use(exp.json())
 const path = require('path')
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'/frontend/views'));
-
-// interfaces
-
-app.get('/inicio',async(req,res)=>{
-    const consulta = await modeloUsuario.find({});
-    res.render('pages/index', {
-        usuarios: consulta,
-     
-    })
-})
-
-app.get('/login',async(req,res)=>{
-    const consulta = await modeloUsuario.find({});
-    res.render('pages/login', {
-        
-    })
-})
-
 
 
 app.post('/login-datos',async(req,res)=>{
