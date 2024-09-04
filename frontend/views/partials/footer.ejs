@@ -1,24 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        footer{
-            margin-top: 30%;
-        }
-    </style>
-</head>
-<body>
-    <h4 class="text-center text-muted"> Tienda virtual de ropa</h4>
-    <p class="text-center text-muted"> Contactanos</p>
+<footer style="margin-top: 30%; padding: 20px;">
+    <h4 class="text-center text-muted">Tienda virtual de ropa</h4>
+    <p class="text-center text-muted">Contáctanos</p>
     <p class="text-center text-muted">© Copyright 2020 The Awesome People</p>
-</body>
-</html>
+</footer>
+
+<button class="btn btn-success position-fixed top-0 end-0 mt-2 me-1 " data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
+    <i class="bi bi-bag"></i>
+</button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="carrito" aria-labelledby="carritoLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="carritoLabel">Carrito de compra</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Contenido del carrito</p>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 

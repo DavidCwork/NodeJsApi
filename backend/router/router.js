@@ -17,9 +17,15 @@ route.get('/login', async (req, res) => {
 }); 
 
 // productos
-route.get('/productos', controladorProductos.consultarProductos)
-route.get('/productos_form', controladorProductos.productosForm)
-route.post('/productos_crear', controladorProductos.productosCrear)
+route.get('/productos', controladorProductos.consultarProductos);
+route.get('/productos_form', controladorProductos.productosForm);
+route.post('/productos_crear', controladorProductos.productosCrear);
+
+
+route.get('/productos/:referencia', controladorProductos.obtenerProductoPorReferencia);
+
+
+route.post('/productos/editar', controladorProductos.editarProducto);
 
 // catalogo
 

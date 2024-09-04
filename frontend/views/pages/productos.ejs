@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <%- include('../partials/head'); %>
     <style>
@@ -9,9 +8,7 @@
         }
     </style>
 </head>
-
-<body class=>
-
+<body>
     <header>
         <%- include('../partials/header'); %>
     </header>
@@ -22,55 +19,100 @@
                 <th>Referencia</th>
                 <th>Productos</th>
                 <th>Precio</th>
-                <th>Descripcion</th>
-                <th>Categoria</th>
-                <th>Imagenes</th>
-                <th>acciones</th>
+                <th>Descripción</th>
+                <th>Stock</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
             </thead>
             <tbody>
-                <% productos.forEach(producto=> { %>
+                <% productos.forEach(producto => { %>
                     <tr>
+                        <td><%= producto.referencia %></td>
+                        <td><%= producto.nombre %></td>
+                        <td><%= producto.precio %></td>
+                        <td><%= producto.descripcion %></td>
+                        <td><%= producto.stock %></td>
+                        <td><%= producto.imagen %></td>
                         <td>
-                            <%= producto.referencia %>
-                        </td>
-                        <td>
-                            <%= producto.nombre %>
-                        </td>
-                        <td>
-                            <%= producto.precio %>
-                        </td>
-                        <td>
-                            <%= producto.descripcion %>
-                        </td>
-                        <td>
-                            <%= producto.categoria %>
-                        </td>
-                        <td>
-                            <%= producto.imagenes %>
-                        </td>
-                        <td>
-                            <button class="btn btn-warning"> Editar </button>
-                            <button class="btn btn-danger"> Eliminar </button>    
+                            <button class="btn btn-warning btn-edit" data-id="<%= producto.referencia %>">Editar</button>
+                            <button class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
-
-                    <%})%>
+                <% }) %>
             </tbody>
         </table>
-
     </main>
-
 
     <footer>
         <%- include('../partials/footer'); %>
-        <script> new DataTable('#productos')</script>
     </footer>
 
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editForm" action="/productos/editar" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="referencia">Referencia</label>
+                            <input type="text" class="form-control" id="referencia" name="referencia" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Precio</label>
+                            <input type="number" class="form-control" id="precio" name="precio" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" class="form-control" id="stock" name="stock" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagen">Imagen</label>
+                            <input type="text" class="form-control" id="imagen" name="imagen">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.btn-edit').forEach(button => {
+            button.addEventListener('click', function() {
+                const referencia = this.getAttribute('data-id');
+
+                fetch(`/productos/${referencia}`)
+                    .then(response => response.json())
+                    .then(producto => {
+                        document.getElementById('referencia').value = producto.referencia;
+                        document.getElementById('nombre').value = producto.nombre;
+                        document.getElementById('precio').value = producto.precio;
+                        document.getElementById('stock').value = producto.stock;
+                        document.getElementById('imagen').value = producto.imagen;
+                        document.getElementById('descripcion').value = producto.descripcion;
+                        $('#editModal').modal('show');
+                    });
+            });
+        });
+
+        new DataTable('#productos');
+    </script>
 </body>
-
 </html>
-
-<script>
-
-
-</script>
